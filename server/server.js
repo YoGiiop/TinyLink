@@ -10,7 +10,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL?.split(',') || ['http://localhost:5173'],
+    origin: process.env.FRONTEND_URL?.split(',')
   })
 )
 app.use(express.json())
@@ -24,7 +24,6 @@ app.get('/healthz', (req, res) => {
 app.use('/api', linkRoutes)
 
 // Redirect route – must be /:code
-// Keep AFTER /healthz and /api so it doesn't catch them
 app.get('/:code', redirectByCode)
 
 const port = process.env.PORT || 4000
